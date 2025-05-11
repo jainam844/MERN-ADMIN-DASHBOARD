@@ -1,0 +1,20 @@
+import { Box } from '@mui/material'
+import Navbar from 'components/Navbar'
+import { Sidebar } from 'components/Sidebar'
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+
+const Layout = () => {
+    return (
+        <Box width="100%" height="100%">
+            <Box>
+                <Navbar />
+                <Sidebar/>
+                <Outlet />
+            </Box>
+
+        </Box>
+    )
+}
+
+export default Layout
