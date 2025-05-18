@@ -87,7 +87,7 @@ const navItems = [
   },
 ];
 
-const Sidebar = ({ drawerWidth, isSidebarOpen, isNonMobile, setIsSidebarOpen }) => {
+const Sidebar = ({ user, drawerWidth, isSidebarOpen, isNonMobile, setIsSidebarOpen }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [active, setActive] = useState("");
@@ -144,10 +144,10 @@ const Sidebar = ({ drawerWidth, isSidebarOpen, isNonMobile, setIsSidebarOpen }) 
                 sx={{ objectFit: "cover" }}
               />
               <Typography variant="h4" fontWeight="bold" sx={{ mt: "1rem" }}>
-                JAINAM SHAH
+                    {user.name}
               </Typography>
               <Typography variant="body2" color={theme.palette.secondary[200]}>
-                Admin
+               {user.occupation}
               </Typography>
             </Box>
 
