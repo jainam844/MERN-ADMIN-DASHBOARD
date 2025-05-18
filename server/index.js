@@ -34,8 +34,8 @@ const startServer = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI);
         console.log("Connected to MongoDB");
-        const result = await User.insertMany(dataUser);
-        console.log("Data inserted successfully", result);
+        // const result = await User.insertMany(dataUser);
+        // console.log("Data inserted successfully", result);
 
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
