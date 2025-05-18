@@ -10,6 +10,8 @@ import generalRoutes from './routes/general.js'
 import managementRoutes from './routes/management.js'
 import salesRoutes from './routes/sales.js'
 import { dataUser } from './data/data.js'
+import User from './models/UserModel.js'
+import mongoose from 'mongoose'
 
 dotenv.config()
 const app = express()
@@ -28,20 +30,20 @@ app.use("/sales", salesRoutes);
 
 const PORT = process.env.PORT || 5000
 
-moongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => {
+const startServer = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log("Connected to MongoDB");
+        const result = await User.insertMany(dataUser);
+        console.log("Data inserted successfully", result);
+
         app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`)
-        })
-        User.InsertMany(dataUser, (err) => {
-            if (err) {
-                console.error('Error inserting data:', err)
-            } else {
-                console.log('Data inserted successfully')
-            }
-        })
-    })
-    .catch((error) => {
-        console.error('Error connecting to MongoDB:', error)
-    })
+            console.log(`Server is running on port ${PORT}`);
+        });
+
+    } catch (error) {
+        console.error("Error connecting to MongoDB or inserting data:", error);
+    }
+};
+
+startServer();
