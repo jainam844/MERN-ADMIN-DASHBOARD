@@ -9,6 +9,7 @@ import clientRoutes from './routes/client.js'
 import generalRoutes from './routes/general.js'
 import managementRoutes from './routes/management.js'
 import salesRoutes from './routes/sales.js'
+import { dataUser } from './data/data.js'
 
 dotenv.config()
 const app = express()
@@ -32,6 +33,13 @@ moongoose
     .then(() => {
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`)
+        })
+        User.InsertMany(dataUser, (err) => {
+            if (err) {
+                console.error('Error inserting data:', err)
+            } else {
+                console.log('Data inserted successfully')
+            }
         })
     })
     .catch((error) => {
